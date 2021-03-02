@@ -1,18 +1,19 @@
+package main
 
 func main(){
 
 }
-type TreeNode struc {
+type TreeNode struct {
   Val int
-  Lett *TreeNode
+  Left *TreeNode
   Right *TreeNode
 }
 
 func buildTree(pre []int, ord []int) *TreeNode {
   if len(pre) == 0 {
-    returen None
+    return nil
   }
-  root = &TreeNode{Val: pre[0]}
+  root := &TreeNode{Val: pre[0]}
   index := 0
   for i, v := range ord {
     if v == pre[0] {

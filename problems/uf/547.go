@@ -14,7 +14,7 @@ func findCircleNum(isConnected [][]int) int {
     for i := 0; i < m; i++ {
         for j:=0; j < m; j++ {
             if isConnected[i][j] == 1 {
-                u.unin(i, j)
+                u.union(i, j)
             }
         }
     }
@@ -54,7 +54,7 @@ func (u *UF)connect(x, y int) bool {
     return u.find(x) == u.find(y)
 }
 
-func (u *UF)unin(x, y int) {
+func (u *UF) union(x, y int) {
     if u.connect(x, y) {
         return
     }
