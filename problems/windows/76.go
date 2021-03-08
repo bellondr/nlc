@@ -13,18 +13,16 @@ func minWindow(s string, t string) string {
 		v, ok := bitMap[key]
 		if ok {
 			bitMap[key] = v + 1
-			logMap[key] = v + 1
+			//logMap[key] = v + 1
 		} else {
 			bitMap[key] = 1
-			logMap[key] = 1
 		}
+		logMap[key] = 0
 	}
 	res := ""
 
-	for left <= len(s) {
-		if right > len(s) {
-			break
-		}
+	for left < len(s) {
+
 		if tag {
 			v, ok := logMap[string(s[left])]
 			if !ok {
@@ -42,19 +40,25 @@ func minWindow(s string, t string) string {
 			if logMap[string(s[left])] < bitMap[string(s[left])] {
 				tag = false
 			}
+			left++
 		} else {
+			if right >= len(s) {
+				break
+			}
 			v, ok := logMap[string(s[right])]
 			if !ok {
 				right++
 				continue
 			}
 			logMap[string(s[right])] = v + 1
+			tag = true
 			for k, v := range logMap {
 				if bitMap[k] > v {
-					continue
+					tag = false
+					break
 				}
 			}
-			tag = true
+			right++
 		}
 	}
 	return res
