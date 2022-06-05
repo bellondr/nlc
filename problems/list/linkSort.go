@@ -5,9 +5,6 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func main()  {
-	
-}
 
 func sortList(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
@@ -27,7 +24,7 @@ func sortList(head *ListNode) *ListNode {
 }
 
 func mergeList(left, right *ListNode) *ListNode {
-	var root *ListNode
+	root := &ListNode{}
 	cur := root
 	for left != nil && right != nil {
 		if left.Val > right.Val {

@@ -8,6 +8,7 @@ func main() {
 	isConnected := [][]int{{1,1,0},{1,1,0},{0,0,1}}
 	fmt.Println(findCircleNum(isConnected))
 }
+
 func findCircleNum(isConnected [][]int) int {
     m := len(isConnected)
     u := NewUF(m)
@@ -30,8 +31,6 @@ func NewUF(n int) *UF {
     }
     for i := 0; i < n; i++ {
         u.parent[i] = i
-    }
-    for i := 0; i < n; i++ {
         u.size[i] = 1
     }
     return u
@@ -45,6 +44,7 @@ type UF struct {
 
 func(u *UF) find(x int) int {
     for ;x != u.parent[x]; {
+    	u.parent[x] = u.parent[u.parent[x]]
         x = u.parent[x]
     }
     return x
